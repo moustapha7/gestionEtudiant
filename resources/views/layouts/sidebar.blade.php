@@ -32,7 +32,7 @@
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="{{ url('employee-management') }}"><i class="fa fa-link"></i> <span>Etudiant Management</span></a></li>
+       
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Gestion Etudiant</span>
             <span class="pull-right-container">
@@ -42,12 +42,6 @@
           <ul class="treeview-menu">
               <li><a href="{{ url('system-management/etudiant') }}">Etudiant</a></li>
               <li><a href="{{ url('system-management/niveau') }}">Niveau</a></li>
-            <li><a href="{{ url('system-management/department') }}">Department</a></li>
-            <li><a href="{{ url('system-management/division') }}">Division</a></li>
-            <li><a href="{{ url('system-management/country') }}">Country</a></li>
-            <li><a href="{{ url('system-management/state') }}">State</a></li>
-            <li><a href="{{ url('system-management/city') }}">City</a></li>
-            <li><a href="{{ url('system-management/report') }}">Report</a></li>
           </ul>
         </li>
         <li><a href="{{ route('user-management.index') }}"><i class="fa fa-link"></i> <span>User management</span></a></li>

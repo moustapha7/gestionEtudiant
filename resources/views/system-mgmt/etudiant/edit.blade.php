@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Update Etudiant</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('etudiant-management.update', ['id' => $etudiant->id]) }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('etudiant.update', ['id' => $etudiant->id]) }}" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PATCH">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
@@ -62,36 +62,8 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">City</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="city_id">
-                                    @foreach ($cities as $city)
-                                        <option {{$etudiant->city_id == $city->id ? 'selected' : ''}} value="{{$city->id}}">{{$city->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                              <div class="form-group">
-                            <label class="col-md-4 control-label">State</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="state_id">
-                                    @foreach ($states as $state)
-                                        <option {{$etudiant->state_id == $state->id ? 'selected' : ''}} value="{{$state->id}}">{{$state->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Country</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="country_id">
-                                    @foreach ($countries as $country)
-                                        <option {{$etudiant->country_id == $country->id ? 'selected' : ''}} value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                        
+                        
                         <div class="form-group{{ $errors->has('zip') ? ' has-error' : '' }}">
                             <label for="zip" class="col-md-4 control-label">Zip</label>
 
@@ -130,32 +102,23 @@
                             </div>
                         </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label">Hired Date</label>
+                            <label class="col-md-4 control-label">Registration date</label>
                             <div class="col-md-6">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" value="{{ $etudiant->date_hired }}" name="date_hired" class="form-control pull-right" id="hiredDate" required>
+                                    <input type="text" value="{{ $etudiant->registration_date }}" name="registration_date" class="form-control pull-right" id="registrationdate" required>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Department</label>
+                            <label class="col-md-4 control-label">Level</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="department_id">
-                                    @foreach ($departments as $department)
-                                        <option {{$etudiant->department_id == $department->id ? 'selected' : ''}} value="{{$department->id}}">{{$department->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Division</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="division_id">
-                                    @foreach ($divisions as $division)
-                                        <option {{$etudiant->division_id == $division->id ? 'selected' : ''}} value="{{$division->id}}">{{$division->name}}</option>
+                                <select class="form-control" name="niveau_id">
+                                    @foreach ($niveau as $niveaus)
+                                        <option {{$etudiant->niveau_id == $niveaus->id ? 'selected' : ''}} value="{{$niveaus->id}}">{{$niveaus->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -163,7 +126,7 @@
                         <div class="form-group">
                             <label for="avatar" class="col-md-4 control-label" >Picture</label>
                             <div class="col-md-6">
-                                <img src="../../{{$etudiant->picture }}" width="50px" height="50px"/>
+                                <img src="../{{$etudiant->picture }}" width="50px" height="50px"/>
                                 <input type="file" id="picture" name="picture" />
                             </div>
                         </div>

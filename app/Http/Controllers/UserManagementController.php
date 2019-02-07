@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Roles;
 
 class UserManagementController extends Controller
 {
@@ -32,9 +33,15 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $users = DB::table('users')
+        ->leftJoin('roles', 'users.roles_id', '=', 'roles.id')
+        ->select('users.*', 'roles.name as roles_name', 'roles.id as roles_id')
+        ->paginate(5);
 
         return view('users-mgmt/index', ['users' => $users]);
+       // $users = User::paginate(5);
+
+       // return view('users-mgmt/index', ['users' => $users]);
     }
 
     /**
@@ -44,7 +51,9 @@ class UserManagementController extends Controller
      */
     public function create()
     {
-        return view('users-mgmt/create');
+        //return view('users-mgmt/create');
+        $roles = Roles::all();
+        return view('users-mgmt/create', ['roles' => $roles]);
     }
 
     /**
@@ -61,7 +70,8 @@ class UserManagementController extends Controller
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
             'firstname' => $request['firstname'],
-            'lastname' => $request['lastname']
+            'lastname' => $request['lastname'],
+            'roles_id' => $request['roles_id']
         ]);
 
         return redirect()->intended('/user-management');
@@ -92,7 +102,9 @@ class UserManagementController extends Controller
             return redirect()->intended('/user-management');
         }
 
-        return view('users-mgmt/edit', ['user' => $user]);
+       // return view('users-mgmt/edit', ['user' => $user]);
+       $roles = Roles::all();
+        return view('users-mgmt/edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -113,7 +125,8 @@ class UserManagementController extends Controller
         $input = [
             'username' => $request['username'],
             'firstname' => $request['firstname'],
-            'lastname' => $request['lastname']
+            'lastname' => $request['lastname'],
+            'roles_id' => $request['roles_id']
         ];
         if ($request['password'] != null && strlen($request['password']) > 0) {
             $constraints['password'] = 'required|min:6|confirmed';

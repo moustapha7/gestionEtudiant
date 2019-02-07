@@ -41,6 +41,7 @@
                 <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Email</th>
                 <th width="20%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">First Name</th>
                 <th width="20%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Last Name</th>
+                <th width="20%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Profil</th>
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
             </thead>
@@ -51,6 +52,7 @@
                   <td>{{ $user->email }}</td>
                   <td class="hidden-xs">{{ $user->firstname }}</td>
                   <td class="hidden-xs">{{ $user->lastname }}</td>
+                  <td class="hidden-xs">{{ $user->roles_name }}</td>
                   <td>
                     <form class="row" method="POST" action="{{ route('user-management.destroy', ['id' => $user->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
@@ -74,6 +76,7 @@
                 <th width="20%" rowspan="1" colspan="1">Email</th>
                 <th class="hidden-xs" width="20%" rowspan="1" colspan="1">First Name</th>
                 <th class="hidden-xs" width="20%" rowspan="1" colspan="1">Last Name</th>
+                <th class="hidden-xs" width="20%" rowspan="1" colspan="1">Profil</th>
                 <th rowspan="1" colspan="2">Action</th>
               </tr>
             </tfoot>

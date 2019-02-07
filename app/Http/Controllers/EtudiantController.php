@@ -64,7 +64,7 @@ class EtudiantController extends Controller
         
         Etudiant::create($input);
 
-        return redirect()->intended('system-mgmt/etudiant');
+        return redirect()->intended('system-management/etudiant');
     }
 
     /**
@@ -128,7 +128,7 @@ class EtudiantController extends Controller
         Etudiant::where('id', $id)
             ->update($input);
 
-        return redirect()->intended('system-mgmt/etudiant');
+        return redirect()->intended('system-management/etudiant');
     }
 
     /**

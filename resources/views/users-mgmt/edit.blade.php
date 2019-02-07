@@ -49,6 +49,16 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Profil</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="roles_id">
+                                    @foreach ($roles as $roless)
+                                        <option {{$user->roles_id == $roless->id ? 'selected' : ''}} value="{{$roless->id}}">{{$roless->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">New Password</label>
 
